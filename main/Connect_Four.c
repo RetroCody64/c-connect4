@@ -1,3 +1,11 @@
+/*
+Program name: c-connect4
+Author: *Redacted*
+Release Date: 19/12/20
+Build: 1.4
+License: GNU GPL V3.0 (General Public License)
+*/
+
 #include <stdio.h>
 
 void initialize_game(); //Set all values on matrix connect_four
