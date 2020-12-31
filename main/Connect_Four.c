@@ -89,17 +89,17 @@ void verify_game_state() //God help whoever decides to try and make sense of thi
   {
     for (int j = 3; j > -1; j--)
     {
-      // Horizontally for x
+      // Vertically for x
       if ( (i > 5 ? 0 : connect_four[i][j] == 'x') && (i > 5 ? 0 : connect_four[i][j + 1] == 'x') && (i > 5 ? 0 : connect_four[i][j + 2] == 'x') && (i > 5 ? 0 : connect_four[i][j + 3] == 'x'))
       { victory = 1; break; }
-      // Vertically for x
+      // Horizontally for x
       else if (connect_four[j][i] == 'x' && connect_four[j + 1][i] == 'x' && connect_four[j + 2][i] == 'x' && (j > 5 ? 0 : connect_four[j + 3][i] == 'x'))
       { victory = 1; break; }
 
-      // Horizontally for o
+      // Vertically for o
       else if ( (i > 5 ? 0 : connect_four[i][j] == 'o') && (i > 5 ? 0 : connect_four[i][j + 1] == 'o') && (i > 5 ? 0 : connect_four[i][j + 2] == 'o') && (i > 5 ? 0 : connect_four[i][j + 3] == 'o'))
       { defeat = 1; break; }
-      // Vertically for o
+      // Horizontally for o
       else if (connect_four[j][i] == 'o' && connect_four[j + 1][i] == 'o' && connect_four[j + 2][i] == 'o' && (j > 5 ? 0 : connect_four[j + 3][i] == 'o'))
       { defeat = 1; break; }
     }
@@ -135,8 +135,7 @@ void verify_game_state() //God help whoever decides to try and make sense of thi
     if (!victory && !defeat) // Prevent pointless verification
     {
       //Left and right increases
-      int j = 0;
-      for (int i = 0; i < 2; i++)
+      for (int i = 0, j = 0; i < 2; i++, j++)
       {
           if ( connect_four[i][j + 2] == 'x' && connect_four[i + 1][j + 3] == 'x' && connect_four[i + 2][j + 4] == 'x' && connect_four[i + 3][j + 5] == 'x')
           { victory = 1; break; }
@@ -147,27 +146,23 @@ void verify_game_state() //God help whoever decides to try and make sense of thi
           { defeat = 1; break; }
           else if ( connect_four[i + 1][j] == 'o' && connect_four[i + 2][j + 1] == 'o' && connect_four[i + 3][j + 2] == 'o' && connect_four[i + 4][j + 3] == 'o')
           { defeat = 1; break; }
-          j++;
       }
       //Left increases and right decreases
       if (!victory && !defeat) // Prevent pointless verification
       {
-        int j = 4;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0, j = 4; i < 2; i++, j--)
         {
             if ( connect_four[i][j] == 'x' && connect_four[i + 1][j - 1] == 'x' && connect_four[i + 2][j - 2] == 'x' && connect_four[i + 3][j - 3] == 'x')
             { victory = 1; break; }
 
             else if ( connect_four[i][j] == 'o' && connect_four[i + 1][j - 1] == 'o' && connect_four[i + 2][j - 2] == 'o' && connect_four[i + 3][j - 3] == 'o')
             { defeat = 1; break; }
-            j--;
         }
       }
       //Left decreases and right increases
       if (!victory && !defeat) // Prevent pointless verification
       {
-        int j = 0;
-        for (int i = 5; i < 4; i--)
+        for (int i = 5, j = 0; i < 4; i--, j++)
         {
             if ( connect_four[i - 1][j] == 'x' && connect_four[i - 2][j + 1] == 'x' && connect_four[i - 3][j + 2] == 'x' && connect_four[i - 4][j + 3] == 'x')
             { victory = 1; break; }
@@ -178,7 +173,6 @@ void verify_game_state() //God help whoever decides to try and make sense of thi
             { defeat = 1; break; }
             else if ( connect_four[i][j + 2] == 'o' && connect_four[i - 1][j + 3] == 'o' && connect_four[i - 2][j + 4] == 'o' && connect_four[i - 3][j + 5] == 'o')
             { defeat = 1; break; }
-            j++;
         }
       }
     }
@@ -186,8 +180,7 @@ void verify_game_state() //God help whoever decides to try and make sense of thi
     if (!victory && !defeat) // Prevent pointless verification
     {
       //Left and right increases
-      int j = 0;
-      for (int i = 0; i < 3; i++)
+      for (int i = 0, j = 0; i < 3; i++, j++)
       {
           if ( connect_four[i][j] == 'x' && connect_four[i + 1][j + 1] == 'x' && connect_four[i + 2][j + 2] == 'x' && connect_four[i + 3][j + 3] == 'x')
           { victory = 1; break; }
@@ -198,13 +191,11 @@ void verify_game_state() //God help whoever decides to try and make sense of thi
           { defeat = 1; break; }
           else if ( connect_four[i][j + 1] == 'o' && connect_four[i + 1][j + 2] == 'o' && connect_four[i + 2][j + 3] == 'o' && connect_four[i + 3][j + 4] == 'o')
           { defeat = 1; break; }
-          j++;
       }
       //Left increases and right decreases
       if (!victory && !defeat) // Prevent pointless verification
       {
-        int j = 6;
-        for (int i = 0; i < 3; i++)
+        for (int i = 0, j = 6; i < 3; i++, j--)
         {
             if ( connect_four[i][j - 1] == 'x' && connect_four[i + 1][j - 2] == 'x' && connect_four[i + 2][j - 3] == 'x' && connect_four[i + 3][j - 4] == 'x')
             { victory = 1; break; }
@@ -215,14 +206,12 @@ void verify_game_state() //God help whoever decides to try and make sense of thi
             { defeat = 1; break; }
             else if ( connect_four[i][j] == 'o' && connect_four[i + 1][j - 1] == 'o' && connect_four[i + 2][j - 2] == 'o' && connect_four[i + 3][j - 3] == 'o')
             { defeat = 1; break; }
-            j--;
         }
       }
       //Left decreases and right increases
       if (!victory && !defeat) // Prevent pointless verification
       {
-        int j = 0;
-        for (int i = 5; i < 3; i--)
+        for (int i = 5, j = 0; i < 3; i--, j++)
         {
             if ( connect_four[i][j] == 'x' && connect_four[i - 1][j + 1] == 'x' && connect_four[i - 2][j + 2] == 'x' && connect_four[i - 3][j + 3] == 'x')
             { victory = 1; break; }
@@ -233,7 +222,6 @@ void verify_game_state() //God help whoever decides to try and make sense of thi
             { victory = 1; break; }
             else if ( connect_four[i][j + 1] == 'o' && connect_four[i - 1][j + 2] == 'o' && connect_four[i - 2][j + 3] == 'o' && connect_four[i - 3][j + 4] == 'o')
             { victory = 1; break; }
-            j++;
         }
       }
     }
@@ -272,8 +260,8 @@ void verify_game_state() //God help whoever decides to try and make sense of thi
 5   |  5.0  |  5.1  |  5.2  |  5.3  |  5.4  |  5.5  |  5.6  |
       ------------------------------------------------------------------
 Combinations:
-  Horizontally:  C && R, R+1, R+2, R+3 || R+4 R+5 R+6 (R = 0 [in the loop we loop until index 6 but since there is no row with index 6 we just pass 5 (in the 0,0 1,1... instance), essentially skipping it])
-  Vertically: C, C+1, C+2, C+3, C+4, C+5 && R (C = 0 [])
+  Vertically:  C && R, R+1, R+2, R+3 || R+4 R+5 R+6 (R = 0 [in the loop we loop until index 6 but since there is no row with index 6 we just pass 5 (in the 0,0 1,1... instance), essentially skipping it])
+  Horizontally: C, C+1, C+2, C+3, C+4, C+5 && R (C = 0 [])
   Diagonally
   {
     one combo possible
