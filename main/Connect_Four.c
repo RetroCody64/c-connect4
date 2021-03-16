@@ -1,6 +1,6 @@
 /*
 Program name: c-connect4
-Author: *Redacted*
+Author: Ricardo Lopes
 Release Date: 19/12/20
 Build: 1.0
 License: GNU GPL V3.0 (General Public License)
